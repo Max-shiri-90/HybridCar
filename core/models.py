@@ -51,3 +51,16 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     objects = UserManager()
     USERNAME_FIELD = 'email'
+
+
+class Car(models.Model):
+    name = models.CharField(max_length=255)
+    model = models.CharField(max_length=255)
+    is_repaired = models.BooleanField(default=False)
+    is_finished = models.BooleanField(default=False)
+    part = models.ManyToManyField('Part')
+
+
+class Part(models.Model):
+    name = models.CharField(max_length=255)
+    price = models.IntegerField()
