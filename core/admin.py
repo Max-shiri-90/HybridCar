@@ -20,17 +20,17 @@ class CarAdmin(admin.ModelAdmin):
             car.is_repaired = True
             car.save()
 
-    def enable_is_finished():
+    def enable_is_finished(self, request, query_set):
         for car in query_set:
             car.is_finished = True
             car.save()
 
-    def disabled_is_required():
+    def disabled_is_required(self, request, query_set):
         for car in query_set:
             car.is_required = True
             car.save()
 
-    def disabled_is_finished():
+    def disabled_is_finished(self, request, query_set):
         for car in query_set:
             car.is_finished = True
             car.save()
