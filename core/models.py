@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, \
     PermissionsMixin
-from django.conf import settings
 
 
 class UserManager(BaseUserManager):
@@ -37,13 +36,13 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
     USER_CHOICES = (
-    ("reception","Reception"),
-    ("admin", "Admin"),
-    ("technician","Technician"),
-    ("inspector","Inspector"),
+        ("reception", "Reception"),
+        ("admin", "Admin"),
+        ("technician", "Technician"),
+        ("inspector", "Inspector"),
     )
 
-    role = models.CharField(choices = USER_CHOICES, max_length=255)
+    role = models.CharField(choices=USER_CHOICES, max_length=255)
     email = models.EmailField(max_length=255, unique=True)
     password = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)

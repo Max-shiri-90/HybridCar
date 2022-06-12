@@ -8,7 +8,8 @@ class CarAdmin(admin.ModelAdmin):
     list_display = ('name', 'model', 'is_repaired', 'is_finished')
     list_filter = ('is_repaired', 'is_finished')
     list_editable = ('is_repaired', 'is_finished')
-    actions = ('enable_is_repaired', 'enable_is_finished', 'disabled_is_required', 'disabled_is_finished')
+    actions = ('enable_is_repaired', 'enable_is_finished',
+               'disabled_is_required', 'disabled_is_finished')
 
     def query_set(self, request):
         if request.user.is_superuser:
@@ -34,6 +35,7 @@ class CarAdmin(admin.ModelAdmin):
         for car in query_set:
             car.is_finished = True
             car.save()
+
 
 admin.site.register(User)
 admin.site.register(Part)
