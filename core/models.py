@@ -6,6 +6,7 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, \
 class UserManager(BaseUserManager):
 
     def create_user(self, email, password=None, **extra_fields):
+        """create and save new user"""
 
         if not email:
             raise ValueError("Email must be provieded")
@@ -19,6 +20,7 @@ class UserManager(BaseUserManager):
         return user
 
     def create_superuser(self, email,  password):
+        """create new super user"""
 
         if not email:
             raise ValueError("Email must be provieded")
@@ -35,6 +37,11 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
+    """Custom user model """
+    """
+        Fields: role , email: (username) , password , is_active, is_staff
+    """
+
     USER_CHOICES = (
         ("reception", "Reception"),
         ("admin", "Admin"),
@@ -53,6 +60,10 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 
 class Car(models.Model):
+    """Car object"""
+    """
+        Fields: name , model , is_repaired , is_finished, part
+    """
     name = models.CharField(max_length=255)
     model = models.CharField(max_length=255)
     is_repaired = models.BooleanField(default=False)
@@ -61,5 +72,9 @@ class Car(models.Model):
 
 
 class Part(models.Model):
+    """Car object"""
+    """
+        Fields: name , price
+    """
     name = models.CharField(max_length=255)
     price = models.IntegerField()
